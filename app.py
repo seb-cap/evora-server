@@ -38,6 +38,8 @@ else:
  this is for handling requests from the filter wheel that may take some time.
 '''
 
+# add instructions to create data dir
+
 logging.getLogger('PIL').setLevel(logging.WARNING)
 
 FILTER_DICT = {'Ha': 0, 'B': 1, 'V': 2, 'g': 3, 'r': 4, 'i': 5}
@@ -208,7 +210,15 @@ def create_app(test_config=None):
     def route_testLongExposure():
         acquisition((1024, 1024), exposure_time=10)
         return str('Finished Acquiring after 10s')
+    
+    @app.route('/getFocus')
+    def route_getFocus():
+        return jsonify({'message':'Not implemented'})
 
+    @app.route('/setFocus')
+    def route_setFocus():
+        return jsonify({'message':'Not implemented'})
+    
     @app.route("/capture", methods=["POST"])
     async def route_capture():
         '''
